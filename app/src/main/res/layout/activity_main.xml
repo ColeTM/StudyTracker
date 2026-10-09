@@ -76,6 +76,14 @@
                 android:layout_height="wrap_content"
                 android:text="progress:"
                 android:translationY="42dp" />
+
+            <ImageView
+                android:id="@+id/englishResetBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="355dp"
+                android:visibility="visible"
+                android:src="@drawable/reset_icon" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -112,6 +120,13 @@
                 android:layout_height="wrap_content"
                 android:text="progress:"
                 android:translationY="42dp" />
+
+            <ImageView
+                android:id="@+id/mathResetBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="355dp"
+                android:src="@drawable/reset_icon" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -148,6 +163,13 @@
                 android:layout_height="wrap_content"
                 android:text="progress:"
                 android:translationY="42dp" />
+
+            <ImageView
+                android:id="@+id/scienceResetBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="355dp"
+                android:src="@drawable/reset_icon" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -184,6 +206,13 @@
                 android:layout_height="wrap_content"
                 android:text="progress:"
                 android:translationY="42dp" />
+
+            <ImageView
+                android:id="@+id/historyResetBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="355dp"
+                android:src="@drawable/reset_icon" />
         </androidx.cardview.widget.CardView>
 
 

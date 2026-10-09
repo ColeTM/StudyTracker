@@ -31,16 +31,12 @@ class MainActivity : ComponentActivity() {
         var minutesStudiedMath = 0
         var minutesStudiedScience = 0
         var minutesStudiedHistory = 0
-        var englishPercentage = 0f
-        var mathPercentage = 0f
-        var sciencePercentage = 0f
-        var historyPercentage = 0f
 
         // initialize all progress text (will be 0% at first)
-        binding.progressText1.text = "Progress: $minutesStudiedEnglish of $studyGoal minutes (${min(100f,minutesStudiedEnglish.toFloat() / studyGoal.toFloat() * 100)}%)"
-        binding.progressText2.text = "Progress: $minutesStudiedMath of $studyGoal minutes (${min(100f,minutesStudiedMath.toFloat() / studyGoal.toFloat() * 100)}%)"
-        binding.progressText3.text = "Progress: $minutesStudiedScience of $studyGoal minutes (${min(100f,minutesStudiedScience.toFloat() / studyGoal.toFloat() * 100)}%)"
-        binding.progressText4.text = "Progress: $minutesStudiedHistory of $studyGoal minutes (${min(100f,minutesStudiedHistory.toFloat() / studyGoal.toFloat() * 100)}%)"
+        updateEnglishProgress(minutesStudiedEnglish, studyGoal)
+        updateMathProgress(minutesStudiedMath, studyGoal)
+        updateScienceProgress(minutesStudiedScience, studyGoal)
+        updateHistoryProgress(minutesStudiedHistory, studyGoal)
 
         // set the values in the dropdown menu
         val subjects = listOf("Select", "English", "Math", "Science", "History")
@@ -66,30 +62,68 @@ class MainActivity : ComponentActivity() {
                 "Select" -> binding.errorText.text = "please choose a subject"  // make sure user chose a subject
                 "English" -> {
                     minutesStudiedEnglish += minsInput
-                    englishPercentage = min(100f,minutesStudiedEnglish.toFloat() / studyGoal.toFloat() * 100)
-                    binding.progressText1.text = "Progress: $minutesStudiedEnglish of $studyGoal minutes ($englishPercentage%)"
-                    binding.progressBar1.setProgress(englishPercentage.toInt(), true)
+                    updateEnglishProgress(minutesStudiedEnglish, studyGoal)
                 }
                 "Math" -> {
                     minutesStudiedMath += minsInput
-                    mathPercentage = min(100f,minutesStudiedMath.toFloat() / studyGoal.toFloat() * 100)
-                    binding.progressText2.text = "Progress: $minutesStudiedMath of $studyGoal minutes ($mathPercentage%)"
-                    binding.progressBar2.setProgress(mathPercentage.toInt(), true)
+                    updateMathProgress(minutesStudiedMath, studyGoal)
                 }
                 "Science" -> {
                     minutesStudiedScience += minsInput
-                    sciencePercentage = min(100f,minutesStudiedScience.toFloat() / studyGoal.toFloat() * 100)
-                    binding.progressText3.text = "Progress: $minutesStudiedScience of $studyGoal minutes ($sciencePercentage%)"
-                    binding.progressBar3.setProgress(sciencePercentage.toInt(), true)
+                    updateScienceProgress(minutesStudiedScience, studyGoal)
                 }
                 "History" -> {
                     minutesStudiedHistory += minsInput
-                    historyPercentage = min(100f,minutesStudiedHistory.toFloat() / studyGoal.toFloat() * 100)
-                    binding.progressText4.text = "Progress: $minutesStudiedHistory of $studyGoal minutes ($historyPercentage%)"
-                    binding.progressBar4.setProgress(historyPercentage.toInt(), true)
+                    updateHistoryProgress(minutesStudiedHistory, studyGoal)
                 }
             }
+        }  // end log study button code
+
+        // reset buttons for each button to reset studying progress to 0
+        binding.englishResetBtn.setOnClickListener {
+            minutesStudiedEnglish = 0
+            updateEnglishProgress(minutesStudiedEnglish, studyGoal)
         }
 
+        binding.mathResetBtn.setOnClickListener {
+            minutesStudiedMath = 0
+            updateMathProgress(minutesStudiedMath, studyGoal)
+        }
+
+        binding.scienceResetBtn.setOnClickListener {
+            minutesStudiedScience = 0
+            updateScienceProgress(minutesStudiedScience, studyGoal)
+        }
+
+        binding.historyResetBtn.setOnClickListener {
+            minutesStudiedHistory = 0
+            updateHistoryProgress(minutesStudiedHistory, studyGoal)
+        }
+
+    }
+
+    // functions to update text and progress bar for each subject
+    fun updateEnglishProgress(minutes: Int, goal: Int) {
+        val percentage = min(100f, minutes.toFloat() / goal.toFloat() * 100)
+        binding.progressText1.text = "Progress: $minutes of $goal minutes ($percentage%)"
+        binding.progressBar1.setProgress(percentage.toInt(), true)
+    }
+
+    fun updateMathProgress(minutes: Int, goal: Int) {
+        val percentage = min(100f, minutes.toFloat() / goal.toFloat() * 100)
+        binding.progressText2.text = "Progress: $minutes of $goal minutes ($percentage%)"
+        binding.progressBar2.setProgress(percentage.toInt(), true)
+    }
+
+    fun updateScienceProgress(minutes: Int, goal: Int) {
+        val percentage = min(100f, minutes.toFloat() / goal.toFloat() * 100)
+        binding.progressText3.text = "Progress: $minutes of $goal minutes ($percentage%)"
+        binding.progressBar3.setProgress(percentage.toInt(), true)
+    }
+
+    fun updateHistoryProgress(minutes: Int, goal: Int) {
+        val percentage = min(100f, minutes.toFloat() / goal.toFloat() * 100)
+        binding.progressText4.text = "Progress: $minutes of $goal minutes ($percentage%)"
+        binding.progressBar4.setProgress(percentage.toInt(), true)
     }
 }
